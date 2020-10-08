@@ -1,11 +1,19 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const request = require('request');
+const port = 4000;
+const petApiLink = 'http://localhost:3000/pets';
 
 app.set('view engine', 'pug');
 
 app.get('/', (req, res) => {
-	res.render('index', {});
+  request.get(petApiLink, (error, response, body) => {
+    if(error) {
+        return console.dir(error);
+    }
+    const pets = JSON.parse(body);
+    res.render('index', {pets: pets});
+  });
 });
 
 app.listen(port, () => {

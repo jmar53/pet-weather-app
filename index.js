@@ -16,6 +16,16 @@ app.get('/', (req, res) => {
   });
 });
 
+app.get('/new', (req, res) => {
+  res.render('new', {});
+});
+
+app.post('/new', (req, res) =>{
+  //ToDo: bodyParser
+  //const pet = req.body;
+  //console.log(pet);
+})
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

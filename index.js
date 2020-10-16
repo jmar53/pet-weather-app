@@ -19,12 +19,21 @@ app.get('/', (req, res) => {
   });
 });
 
+app.get('/pets/:id', (req, res) => {
+  const selectedId = req.params.id;
+  request.get(petApiLink + '/' + selectedId, (error, response, body) => {
+    if (error) {
+      return console.dir(error);
+    }
+    res.render('petY', { pet: JSON.parse(body)[0] });
+  });
+});
+
 app.get('/new', (req, res) => {
   res.render('new', {});
 });
 
 app.post('/new', (req, res) => {
-  //ToDo: bodyParser
   const pet = req.body;
   request.post({
     "headers": { "content-type": "application/json" },

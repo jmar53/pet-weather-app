@@ -25,7 +25,7 @@ app.get('/pets/:id', (req, res) => {
     if (error) {
       return console.dir(error);
     }
-    res.render('petY', { pet: JSON.parse(body)[0] });
+    res.render('pet-y', { pet: JSON.parse(body)[0] });
   });
 });
 

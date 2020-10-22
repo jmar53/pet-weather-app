@@ -4,6 +4,10 @@ const request = require('request');
 const bodyParser = require('body-parser');
 const port = 4000;
 const petApiLink = 'http://localhost:3000/pets';
+require('dotenv').config();
+const awKey = process.env.AW_API_KEY;
+const awCitySearch = 'http://dataservice.accuweather.com/locations/v1/cities/search';
+const awCurrentConditions = 'http://dataservice.accuweather.com/currentconditions/v1/';
 
 app.set('view engine', 'pug');
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,7 +29,22 @@ app.get('/pets/:id', (req, res) => {
     if (error) {
       return console.dir(error);
     }
-    res.render('pet-y', { pet: JSON.parse(body)[0] });
+    let pet = JSON.parse(body)[0];
+    let location = 'default';
+    request.get(`${awCitySearch}?apikey=${awKey}&q=${pet.location}`, (error, response, body) => {
+      if (error) {
+        return console.dir(error);
+      }
+      location = JSON.parse(body)[0].Key;
+      request.get(`${awCurrentConditions}${location}?apikey=${awKey}`, (error, response, body) => {
+        if (error) {
+          return console.dir(error);
+        }
+        //TODO: Determine if current weather is rain and render
+        //  proper pug file
+        res.render('pet-y', { pet: pet, location: location, cc: JSON.parse(body)[0].WeatherText });
+      });
+    });
   });
 });
 

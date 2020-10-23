@@ -31,12 +31,21 @@ app.get('/pets/:id', (req, res) => {
     }
     let pet = JSON.parse(body)[0];
     let location = 'default';
-    request.get(`${awCitySearch}?apikey=${awKey}&q=${pet.location}`, (error, response, body) => {
+    const awCityOptions = {
+      url: `${awCitySearch}?apikey=${awKey}&q=${pet.location}`,
+      gzip: true
+    };
+    request.get(awCityOptions, (error, response, body) => {
       if (error) {
         return console.dir(error);
       }
+      console.log(JSON.parse(body));
       location = JSON.parse(body)[0].Key;
-      request.get(`${awCurrentConditions}${location}?apikey=${awKey}`, (error, response, body) => {
+      const awConditionsOptions = {
+        url: `${awCurrentConditions}${location}?apikey=${awKey}`,
+        gzip: true
+      };
+      request.get(awConditionsOptions, (error, response, body) => {
         if (error) {
           return console.dir(error);
         }

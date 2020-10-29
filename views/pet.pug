@@ -7,20 +7,11 @@ block content
    = cc.PrecipitationType
    = cc.WeatherText
  - var desc = '' 
- if cc.HasPrecipitation
+ if cc.HasPrecipitation && (cc.PrecipitationType == 'Rain' || cc.PrecipitationType == 'Mixed')
    h1 Yes!
  else
    - desc = 'NOT'
    h1 No!
- h3 
-  = pet.name
-  |
-  | is 
-  = desc
-  |
-  | going to need an umbrella in
-  |
-  = pet.location
-  | .
+ h3 #{pet.name} is #{desc} going to need an umbrella in #{pet.location}.
  br
  a(href="/") Lookup a different pet

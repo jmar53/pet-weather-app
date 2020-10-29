@@ -39,17 +39,22 @@ app.get('/pets/:id', (req, res) => {
       if (error) {
         return console.dir(error);
       }
-      location = JSON.parse(body)[0].Key;
-      const awConditionsOptions = {
-        url: `${awCurrentConditions}${location}?apikey=${awKey}`,
-        gzip: true
-      };
-      request.get(awConditionsOptions, (error, response, body) => {
-        if (error) {
-          return console.dir(error);
-        }
-        res.render('pet', { pet: pet, location: location, cc: JSON.parse(body)[0] });
-      });
+      console.log(JSON.parse(body));
+      if (!JSON.parse(body)[0]) {
+        res.render('error', {err: JSON.parse(body)});
+      } else {
+        location = JSON.parse(body)[0].Key;
+        const awConditionsOptions = {
+          url: `${awCurrentConditions}${location}?apikey=${awKey}`,
+          gzip: true
+        };
+        request.get(awConditionsOptions, (error, response, body) => {
+          if (error) {
+            return console.dir(error);
+          }
+          res.render('pet', { pet: pet, location: location, cc: JSON.parse(body)[0] });
+        });
+      }
     });
   });
 });

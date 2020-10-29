@@ -39,7 +39,6 @@ app.get('/pets/:id', (req, res) => {
       if (error) {
         return console.dir(error);
       }
-      console.log(JSON.parse(body));
       location = JSON.parse(body)[0].Key;
       const awConditionsOptions = {
         url: `${awCurrentConditions}${location}?apikey=${awKey}`,
@@ -49,9 +48,7 @@ app.get('/pets/:id', (req, res) => {
         if (error) {
           return console.dir(error);
         }
-        //TODO: Determine if current weather is rain and render
-        //  proper pug file
-        res.render('pet-y', { pet: pet, location: location, cc: JSON.parse(body)[0].WeatherText });
+        res.render('pet', { pet: pet, location: location, cc: JSON.parse(body)[0] });
       });
     });
   });

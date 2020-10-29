@@ -1,0 +1,26 @@
+extends ./layout.pug
+
+block content
+ h3
+  = location
+ h3= cc.HasPrecipitation
+   = cc.PrecipitationType
+   = cc.WeatherText
+ - var desc = '' 
+ if cc.HasPrecipitation
+   h1 Yes!
+ else
+   - desc = 'NOT'
+   h1 No!
+ h3 
+  = pet.name
+  |
+  | is 
+  = desc
+  |
+  | going to need an umbrella in
+  |
+  = pet.location
+  | .
+ br
+ a(href="/") Lookup a different pet

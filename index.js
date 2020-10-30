@@ -1,10 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const request = require('request');
 const bodyParser = require('body-parser');
-const port = 4000;
-const petApiLink = 'http://localhost:3000/pets';
-require('dotenv').config();
+const port = process.env.PORT || 4000;
+const petApiLink = process.env.PET_API;
+console.log(petApiLink);
 const awKey = process.env.AW_API_KEY;
 const awCitySearch = 'http://dataservice.accuweather.com/locations/v1/cities/search';
 const awCurrentConditions = 'http://dataservice.accuweather.com/currentconditions/v1/';
@@ -39,7 +40,6 @@ app.get('/pets/:id', (req, res) => {
       if (error) {
         return console.dir(error);
       }
-      console.log(JSON.parse(body));
       if (!JSON.parse(body)[0]) {
         res.render('error', {err: JSON.parse(body)});
       } else {

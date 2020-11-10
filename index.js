@@ -5,11 +5,11 @@ const request = require('request');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 4000;
 const petApiLink = process.env.PET_API;
-console.log(petApiLink);
 const awKey = process.env.AW_API_KEY;
 const awCitySearch = 'http://dataservice.accuweather.com/locations/v1/cities/search';
 const awCurrentConditions = 'http://dataservice.accuweather.com/currentconditions/v1/';
 
+app.use(express.static('public'));
 app.set('view engine', 'pug');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

@@ -1,7 +1,48 @@
-.pet-container {
-    display: insline-block;
-    width: 200px;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1, h2, h3 {
     text-align: center;
-    margin-right: 10px;
-    margin-bottom: 40px;
+}
+.mainContainer {
+    width: 95%;
+    margin: 0 auto;
+}
+.petTable {
+	display: table;
+    width: 100%;
+    border: 2px solid #999999;
+    border-right: 0px;
+}
+.petTableRow {
+	display: table-row;
+}
+.petTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+}
+.petTableCell, .petTableHead {
+    border-right: 2px solid black;
+	display: table-cell;
+	padding: 3px 10px;
+}
+.petTableHead {
+    background-color: #DDD;
+    font-weight: bold;
+}
+.petOddRow {
+    background-color: #EEE;
+}
+.petTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+	font-weight: bold;
+}
+.petTableFoot {
+	background-color: #EEE;
+	display: table-footer-group;
+	font-weight: bold;
+}
+.petTableBody {
+	display: table-row-group;
 }

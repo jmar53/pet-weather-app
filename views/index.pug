@@ -1,12 +1,29 @@
 extends ./layout.pug
 
 block content
- h1 Does My Pet Need An Umbrella?
- h3 Select a pet to find out or 
-  a(href='new') add your pet
- each pet in pets
-  div
-   = pet.name
-   = pet.pet_type
-   = pet.breed
-   a(href="/pets/" + pet.id) view
+  div(class='mainContainer')
+    h1 Does My Pet Need An Umbrella?
+    h3 Select a pet to find out or 
+      a(href='new') add your pet
+    div(class='petTable')
+      div(class='petTableBody')
+        div(class='petTableRow')
+          div(class='petTableHead') Name
+          div(class='petTableHead') Type
+          div(class='petTableHead') Breed
+          div(class='petTableHead') &nbsp;
+        each pet, index in pets
+          if (index + 1)%2 == 0
+            div(class='petTableRow')
+              div(class='petTableCell')= pet.name
+              div(class='petTableCell')= pet.pet_type
+              div(class='petTableCell')= pet.breed
+              div(class='petTableCell petEndCell')
+                a(href="/pets/" + pet.id) view
+          else
+            div(class='petTableRow petOddRow')
+              div(class='petTableCell')= pet.name
+              div(class='petTableCell')= pet.pet_type
+              div(class='petTableCell')= pet.breed
+              div(class='petTableCell petEndCell')
+                a(href="/pets/" + pet.id) view

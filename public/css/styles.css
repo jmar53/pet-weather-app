@@ -48,3 +48,6 @@ h1, h2, h3 {
 .petTableBody {
 	display: table-row-group;
 }
+.aCenter {
+	display:block;text-align:center;
+}

@@ -23,7 +23,7 @@ body {
 	padding: 3px 10px;
 }
 .petEndCell {
-	border-right:
+	border-right: 0px;
 }
 .petTableHead {
     background-color: #DDD;
@@ -50,4 +50,22 @@ body {
 }
 .divTCenter {
     text-align: center;
+}
+form {
+	width: 80%;
+	margin: 0 auto;
+}
+label, input {
+	display: inline-block;
+}
+label {
+	width: 30%;
+	text-align: right;
+}
+label+input {
+	width: 30%;
+	margin: 0 30% 0 4%;
+}
+.sButton {
+	float: right;
 }

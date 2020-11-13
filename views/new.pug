@@ -1,24 +1,25 @@
 extends ./layout.pug
 
 block content
- h1 Add your pet
- form(class='center' action='/new' method='post')
-  label(for='name') Name:
-  input(type='text', id='name', name='name')
-  br
-  label(for='pet_type') Type:
-  input(type='text', id='pet_type', name='pet_type')
-  br
-  label(for='breed') Breed:
-  input(type='text', id='breed', name='breed')
-  br
-  label(for='location') Location:
-  input(type='text', id='location', name='location')
-  br
-  label(for='latitude') Latitude:
-  input(type='text', id='latitude', name='latitude')
-  br
-  label(for='longitude') Longitude:
-  input(type='text', id='longitude', name='longitude')
-  br
-  button Add Pet
+ div(class='mainContainer')
+  h1 Add your pet
+  form(class='center' action='/new' method='post')
+   label(for='name') Name:
+   input(type='text', id='name', name='name')
+   br
+   label(for='pet_type') Type:
+   input(type='text', id='pet_type', name='pet_type')
+   br
+   label(for='breed') Breed:
+   input(type='text', id='breed', name='breed')
+   br
+   label(for='location') Location:
+   input(type='text', id='location', name='location')
+   br
+   label(for='latitude') Latitude:
+   input(type='text', id='latitude', name='latitude')
+   br
+   label(for='longitude') Longitude:
+   input(type='text', id='longitude', name='longitude')
+   br
+   button(class='sButton') Add Pet

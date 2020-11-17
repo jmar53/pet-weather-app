@@ -67,5 +67,7 @@ label+input {
 	margin: 0 30% 0 4%;
 }
 .sButton {
-	float: right;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

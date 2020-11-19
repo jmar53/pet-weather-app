@@ -3,24 +3,24 @@ extends ./layout.pug
 block content
  div(class='mainContainer')
   h1 Add your pet
-  form(class='center' action='/new' method='post')
+  form(class='center', action='/new', method='post')
    label(for='name') Name:
-   input(type='text', id='name', name='name')
+   input(type='text', id='name', name='name', required)
    br
    label(for='pet_type') Type:
-   input(type='text', id='pet_type', name='pet_type')
+   input(type='text', id='pet_type', name='pet_type', required)
    br
    label(for='breed') Breed:
-   input(type='text', id='breed', name='breed')
+   input(type='text', id='breed', name='breed', required)
    br
    label(for='location') Location:
-   input(type='text', id='location', name='location')
+   input(type='text', id='location', name='location', required)
    br
    label(for='latitude') Latitude:
-   input(type='text', id='latitude', name='latitude')
+   input(type='text', id='latitude', name='latitude', required, pattern='^[-+]?([1-8]?\\d(\\.\\d{1,6})?|90(\\.0+)?)$')
    br
    label(for='longitude') Longitude:
-   input(type='text', id='longitude', name='longitude')
+   input(type='text', id='longitude', name='longitude', required, pattern='\\s*[-+]?(180(\\.0{1,6})?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d{1,6})?)$')
    br
    br
    br

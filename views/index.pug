@@ -19,12 +19,12 @@ block content
               div(class='petTableCell')= pet.name
               div(class='petTableCell')= pet.pet_type
               div(class='petTableCell')= pet.breed
-              div(class='petTableCell petEndCell')
+              div(class='petTableCell')
                 a(href="/pets/" + pet.id) view
           else
             div(class='petTableRow petOddRow')
               div(class='petTableCell')= pet.name
               div(class='petTableCell')= pet.pet_type
               div(class='petTableCell')= pet.breed
-              div(class='petTableCell petEndCell')
+              div(class='petTableCell')
                 a(href="/pets/" + pet.id) view

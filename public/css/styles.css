@@ -18,12 +18,8 @@ body {
 	display: table-header-group;
 }
 .petTableCell, .petTableHead {
-    border-right: 2px solid #999999;
 	display: table-cell;
 	padding: 3px 10px;
-}
-.petEndCell {
-	border-right: 0px;
 }
 .petTableHead {
     background-color: #DDD;

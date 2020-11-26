@@ -14,7 +14,10 @@ block content
    input(type='text', id='breed', name='breed', required)
    br
    label(for='location') Location:
-   input(type='text', id='location', name='location', required)
+   if pet && pet.location
+     input(type='text', id='location', name='location', isvalid='false', oninput='clearMessage()', value=pet.location required)
+   else
+     input(type='text', id='location', name='location', required)
    br
    label(for='latitude') Latitude:
    input(type='text', id='latitude', name='latitude', required, pattern='^[-+]?([1-8]?\\d(\\.\\d{1,6})?|90(\\.0+)?)$')
@@ -28,3 +31,6 @@ block content
     button Add Pet
     |&nbsp;&nbsp;
     input(type="button", name="cancel", value="Cancel", onClick="window.location.href='/';")
+  block scripts
+    if pet && pet.location
+      script(src="./js/new.js")

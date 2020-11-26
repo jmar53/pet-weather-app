@@ -41,7 +41,7 @@ app.get('/pets/:id', (req, res) => {
         return console.dir(error);
       }
       if (!JSON.parse(body)[0]) {
-        res.render('error', {err: JSON.parse(body)});
+        res.render('error', { err: JSON.parse(body) });
       } else {
         location = JSON.parse(body)[0].Key;
         const awConditionsOptions = {
@@ -65,24 +65,46 @@ app.get('/new', (req, res) => {
 
 app.post('/new', (req, res) => {
   const pet = req.body;
-  request.post({
-    "headers": { "content-type": "application/json" },
-    "url": petApiLink,
-    "body": JSON.stringify({
-      "name": pet.name,
-      "pet_type": pet.pet_type,
-      "breed": pet.breed,
-      "location": pet.location,
-      "latitude": pet.latitude,
-      "longitude": pet.longitude
-    })
-  }, (error, response, body) => {
+  const awCityOptions = {
+    url: `${awCitySearch}?apikey=${awKey}&q=${pet.location}`,
+    gzip: true
+  };
+  request.get(awCityOptions, (error, response, body) => {
     if (error) {
       return console.dir(error);
     }
-    res.redirect('/');
+    const awCityOptions = {
+      url: `${awCitySearch}?apikey=${awKey}&q=${pet.location}`,
+      gzip: true
+    };
+    request.get(awCityOptions, (error, response, body) => {
+      if (error) {
+        return console.dir(error);
+      }
+      if (!JSON.parse(body)[0]) {
+        res.render('new', {pet: pet});
+      } else {
+        request.post({
+          "headers": { "content-type": "application/json" },
+          "url": petApiLink,
+          "body": JSON.stringify({
+            "name": pet.name,
+            "pet_type": pet.pet_type,
+            "breed": pet.breed,
+            "location": pet.location,
+            "latitude": pet.latitude,
+            "longitude": pet.longitude
+          })
+        }, (error, response, body) => {
+          if (error) {
+            return console.dir(error);
+          }
+          res.redirect('/');
+        })
+      }
+    });
   });
-})
+});
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

@@ -5,25 +5,40 @@ block content
   h1 Add your pet
   form(class='center', action='/new', method='post')
    label(for='name') Name:
-   input(type='text', id='name', name='name', required)
+   if pet
+     input(type='text', id='name', name='name', value=pet.name, required)
+   else
+     input(type='text', id='name', name='name', required)
    br
    label(for='pet_type') Type:
-   input(type='text', id='pet_type', name='pet_type', required)
+   if pet
+     input(type='text', id='pet_type', name='pet_type', value=pet.pet_type, required)
+   else
+     input(type='text', id='pet_type', name='pet_type', required)
    br
    label(for='breed') Breed:
-   input(type='text', id='breed', name='breed', required)
+   if pet
+     input(type='text', id='breed', name='breed', value=pet.breed, required)
+   else
+     input(type='text', id='breed', name='breed', required)
    br
    label(for='location') Location:
-   if pet && pet.location
+   if pet
      input(type='text', id='location', name='location', isvalid='false', oninput='clearMessage()', value=pet.location required)
    else
      input(type='text', id='location', name='location', required)
    br
    label(for='latitude') Latitude:
-   input(type='text', id='latitude', name='latitude', required, pattern='^[-+]?([1-8]?\\d(\\.\\d{1,6})?|90(\\.0+)?)$')
+   if pet
+     input(type='text', id='latitude', name='latitude', value=pet.latitude, required, pattern='^[-+]?([1-8]?\\d(\\.\\d{1,6})?|90(\\.0+)?)$')
+   else
+     input(type='text', id='latitude', name='latitude', required, pattern='^[-+]?([1-8]?\\d(\\.\\d{1,6})?|90(\\.0+)?)$')
    br
    label(for='longitude') Longitude:
-   input(type='text', id='longitude', name='longitude', required, pattern='\\s*[-+]?(180(\\.0{1,6})?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d{1,6})?)$')
+   if pet
+     input(type='text', id='longitude', name='longitude', value=pet.longitude, required, pattern='\\s*[-+]?(180(\\.0{1,6})?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d{1,6})?)$')
+   else
+     input(type='text', id='longitude', name='longitude', required, pattern='\\s*[-+]?(180(\\.0{1,6})?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d{1,6})?)$')  
    br
    br
    br

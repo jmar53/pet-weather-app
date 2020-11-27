@@ -99,7 +99,7 @@ app.post('/new', (req, res) => {
           if (error) {
             return console.dir(error);
           }
-          res.redirect('/');
+          res.redirect(`/pets/${body}`);
         })
       }
     });

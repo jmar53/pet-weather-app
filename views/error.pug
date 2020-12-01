@@ -2,6 +2,10 @@ extends ./layout.pug
 
 block content
   h1 Error
-  h3 Code: #{err.Code}
-  h3 Message: #{err.Message}
+  if err.code
+    h3 Code: #{err.code}
+    h3 Message: #{err.message}
+  else
+    h3 Code: #{err.Code}
+    h3 Message: #{err.Message}
   a(href="/") Home

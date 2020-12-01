@@ -17,6 +17,7 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => {
   request.get(petApiLink, (error, response, body) => {
     if (error) {
+      res.render('error', { err: error });
       return console.dir(error);
     }
     const pets = JSON.parse(body);
@@ -28,6 +29,7 @@ app.get('/pets/:id', (req, res) => {
   const selectedId = req.params.id;
   request.get(petApiLink + '/' + selectedId, (error, response, body) => {
     if (error) {
+      res.render('error', { err: error });
       return console.dir(error);
     }
     let pet = JSON.parse(body)[0];
@@ -38,6 +40,7 @@ app.get('/pets/:id', (req, res) => {
     };
     request.get(awCityOptions, (error, response, body) => {
       if (error) {
+        res.render('error', { err: error });
         return console.dir(error);
       }
       if (!JSON.parse(body)[0]) {
@@ -50,6 +53,7 @@ app.get('/pets/:id', (req, res) => {
         };
         request.get(awConditionsOptions, (error, response, body) => {
           if (error) {
+            res.render('error', { err: error });
             return console.dir(error);
           }
           res.render('pet', { pet: pet, location: location, cc: JSON.parse(body)[0] });
@@ -71,6 +75,7 @@ app.post('/new', (req, res) => {
   };
   request.get(awCityOptions, (error, response, body) => {
     if (error) {
+      res.render('error', { err: error });
       return console.dir(error);
     }
     const awCityOptions = {
@@ -79,6 +84,7 @@ app.post('/new', (req, res) => {
     };
     request.get(awCityOptions, (error, response, body) => {
       if (error) {
+        res.render('error', { err: error });
         return console.dir(error);
       }
       if (!JSON.parse(body)[0]) {
@@ -97,6 +103,7 @@ app.post('/new', (req, res) => {
           })
         }, (error, response, body) => {
           if (error) {
+            res.render('error', { err: error });
             return console.dir(error);
           }
           res.redirect(`/pets/${body}`);

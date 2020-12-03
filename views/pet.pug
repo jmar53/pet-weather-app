@@ -2,11 +2,6 @@ extends ./layout.pug
 
 block content
  div(class='divTCenter')
-  h3
-   = location
-  h3= cc.HasPrecipitation
-    = cc.PrecipitationType
-    = cc.WeatherText
   - var desc = '' 
   if cc.HasPrecipitation && (cc.PrecipitationType == 'Rain' || cc.PrecipitationType == 'Mixed')
     h1 Yes!

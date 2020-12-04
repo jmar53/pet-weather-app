@@ -60,7 +60,7 @@ label {
 }
 label+input {
 	width: 30%;
-	margin: 0 30% 0 4%;
+	margin: .5px 30% .5px 4%;
 }
 .sButton {
 	display: flex;
